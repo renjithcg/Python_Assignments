@@ -2,7 +2,7 @@ import os
 import os.path
 from datetime import datetime
 
-datestring = datetime.strftime(datetime.now(), '%d%m%Y')
+datestring = datetime.strftime(datetime.now(), '%Y%m%d')
 hostname =input("Host Address")
 database =input("Database name")
 username =input("database username")
