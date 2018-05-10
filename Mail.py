@@ -1,7 +1,24 @@
 import smtplib
-s= smtplib.SMTP("smtp.gmail.com",587)
+import getpass
+to =[]
+user = input("Enter your EmailAddress :")
+password = getpass.getpass("Enter your password : ")
+msg = input("Please Enter The Matter : ")
+to.append(input("Enter To address: "))
+s = smtplib.SMTP('smtp.gmail.com',587)
 s.ehlo()
 s.starttls()
-s.login(input("Enter The UserName : "),input("Enter The Password : "))
-msg = input("Enter The Matter ; ")
-s.sendmail(input("Enter the From Address : "),input("Enter The To Address : "),msg)
+print("Connecting to the server.....")
+try:
+    s.login(user,password)
+    if(s.verify(user)):
+        print("Successfully connected to Server...")
+        s.sendmail(user,to,msg)
+        s.quit()
+        print("Mail have been sent successfully.....!")
+except smtplib.SMTPAuthenticationError:
+    print("Can not connected to the Server...!")
+
+
+
+
